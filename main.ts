@@ -212,9 +212,9 @@ namespace WiFiBit {
             HttpMethod.GET,
             "blynk.cloud",
             80,
-            "/external/api/get?token=" + auth_token + "&" + pin
+            "/external/api/get?token=" + auth_token + "&v-1&" + pin
         )
-        let value: string = response
+        let value: string = response.substr(response.indexOf("{"" + pin + "":") + 2 + pin.length + 2, response.indexOf("}") - response.indexOf("{"" + pin + "":") - 2 - pin.length - 2)
         response = null
         serial.onDataReceived(serial.delimiters(Delimiters.NewLine), () => { })
         return value
