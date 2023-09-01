@@ -135,49 +135,6 @@ namespace WiFiBit {
         writeToSerial("AT+CIPCLOSE", pauseBaseValue * 3)
     }
 
-    /**(Depreciated)
-     * Write Blynk pin value.
-     * @param value Value, eg: "510"
-     * @param pin Pin, eg: "A0"
-     * @param auth_token Token, eg: "14dabda3551b4dd5ab46464af582f7d2"
-     *
-    //% weight=95
-    //% blockId="wfb_blynk_write" block="Blynk: write %value to %pin, token is %auth_token"
-		export function writeBlynkPinValue(value: string, pin: string, auth_token: string): void {
-			executeHttpMethod(
-				HttpMethod.GET,
-				"blynk-cloud.com",
-				80,
-				"/" + auth_token + "/update/" + pin + "?value=" + value
-			)
-		}
-
-		/**
-		 * Read Blynk pin value.
-		 * @param pin Pin, eg: "A0"
-		 * @param auth_token Token, eg: "14dabda3551b4dd5ab46464af582f7d2"
-		 **
-		//% weight=94
-		//% blockId="wfb_blynk_read" block="Blynk: read %pin, token is %auth_token"
-		export function readBlynkPinValue(pin: string, auth_token: string): string {
-			executeAtCommand("ATE0", 1000)
-			let response: string
-			serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
-				response += serial.readString()
-			})
-			executeHttpMethod(
-				HttpMethod.GET,
-				"blynk-cloud.com",
-				80,
-				"/" + auth_token + "/get/" + pin
-			)
-			let value: string = response.substr(response.indexOf("[") + 2, response.indexOf("]") - response.indexOf("[") - 3)
-			response = null
-			serial.onDataReceived(serial.delimiters(Delimiters.NewLine), () => { })
-			return value
-		}
-	/ 
-
     /**
      * Write Blynk IoT pin value.
      * @param value Value, eg: "1"
@@ -212,7 +169,7 @@ namespace WiFiBit {
             HttpMethod.GET,
             "blynk.cloud",
             80,
-            "/external/api/get?token=" + auth_token + "&v-1&" + pin
+            "/external/api/get?token=" + auth_token + "&" + pin
         )
         let value: string = response.substr(response.indexOf("{"" + pin + "":") + 2 + pin.length + 2, response.indexOf("}") - response.indexOf("{"" + pin + "":") - 2 - pin.length - 2).replaceAll(""", "")
         response = null

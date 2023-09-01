@@ -1,5 +1,5 @@
 {
-    "name": "pxt-mbwifi",
+    "name": "pxt-wifi",
     "version": "2.0",
     "description": "Connect micro:bit to the Internet with a WiFi:bit module.",
     "dependencies": {
