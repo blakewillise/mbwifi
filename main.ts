@@ -214,7 +214,7 @@ namespace WiFiBit {
             80,
             "/external/api/get?token=" + auth_token + "&v-1&" + pin
         )
-        let value: string = response.substr(response.indexOf("{"" + pin + "":") + 2 + pin.length + 2, response.indexOf("}") - response.indexOf("{"" + pin + "":") - 2 - pin.length - 2)
+        let value: string = response.substr(response.indexOf("{"" + pin + "":") + 2 + pin.length + 2, response.indexOf("}") - response.indexOf("{"" + pin + "":") - 2 - pin.length - 2).replaceAll(""", "")
         response = null
         serial.onDataReceived(serial.delimiters(Delimiters.NewLine), () => { })
         return value
